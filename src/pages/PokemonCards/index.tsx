@@ -16,5 +16,12 @@ export const PokemonCards = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div className="flex flex-wrap justify-center gap-5"></div>;
+  return (
+    <div className="flex flex-wrap justify-center gap-5">
+      {pokemonApi.fulfilled &&
+        pokemonApi?.value?.results.map((pokemon, index) => (
+          <PokemonCard key={`${index}-${pokemon.name}`} name={pokemon.name} />
+        ))}
+    </div>
+  );
 };

@@ -26,7 +26,7 @@ const promiseReducer = <P>(
         rejected: false,
         pending: false,
         fulfilled: true,
-        result: payload,
+        value: payload,
       };
     case PromiseStatus.REJECTED:
       return {
