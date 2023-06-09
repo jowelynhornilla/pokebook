@@ -1,5 +1,5 @@
 export interface UsePromiseParams<T, P> {
-  promiseFunction: (args: T) => Promise<P>;
+  promiseFunction: (args?: T | null) => Promise<P>;
 }
 
 export enum PromiseStatus {

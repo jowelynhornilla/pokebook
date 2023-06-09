@@ -1,13 +1,18 @@
 import axios from "axios";
 import { POKEAPI_URL } from "config";
-import { GetParams } from "./pokemon.types";
+import { GetParams, GetResponse, ListResponse } from "./types/pokemon.types";
 
-const get = (params?: GetParams) => {
-  const { name = "" } = params || {};
-  return axios.get(`${POKEAPI_URL}/pokemon/${name}`);
+const list = () => {
+  return axios.get<ListResponse>(`${POKEAPI_URL}/pokemon`);
+};
+
+const get = (params: GetParams) => {
+  const { name } = params;
+  return axios.get<GetResponse>(`${POKEAPI_URL}/pokemon/${name}`);
 };
 
 const PokemonService = {
+  list,
   get,
 };
 

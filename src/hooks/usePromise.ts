@@ -52,7 +52,7 @@ export const usePromise = <T = any, P = any>({
     result: null,
   });
 
-  const call = async (params: T) => {
+  const call = async (params?: T | null) => {
     dispatch({
       type: PromiseStatus.PENDING,
     });
