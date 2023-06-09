@@ -15,7 +15,7 @@ export interface PromiseAction<P> {
 }
 
 export interface PromiseState<P> {
-  result?: P | null;
+  value?: P | null;
   pending: boolean;
   fulfilled: boolean;
   rejected: boolean;

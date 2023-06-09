@@ -49,7 +49,7 @@ export const usePromise = <T = any, P = any>({
     rejected: false,
     fulfilled: false,
     reason: null,
-    result: null,
+    value: null,
   });
 
   const call = async (params?: T | null) => {
