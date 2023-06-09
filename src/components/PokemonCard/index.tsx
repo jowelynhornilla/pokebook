@@ -66,7 +66,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({ name, onClick }) => {
           />
         </div>
         <div className="h-1/3 bg-white p-5 space-y-5">
-          <div className="capitalize text-center text-xl font-bold text-slate-600">
+          <div className="capitalize text-center text-xl font-bold text-slate-600 truncate">
             {pokemonDetails?.name}
           </div>
           <div className="flex gap-2">

@@ -49,7 +49,7 @@ export const PokemonProfile = () => {
   };
 
   return (
-    <div className="h-full flex flex-col md:flex-row p-10 ml-auto mr-auto">
+    <div className="h-full flex flex-col md:flex-row p-10 ml-auto mr-auto overflow-y-auto">
       {pokemonApi.pending && <Loader />}
       {pokemonApi.fulfilled && (
         <>
@@ -71,7 +71,7 @@ export const PokemonProfile = () => {
             <div className="space-y-5">
               <div
                 className={cn(
-                  "capitalize text-4xl md:text-6xl font-bold text-slate-600",
+                  "capitalize text-4xl md:text-6xl font-bold text-slate-600 truncate",
                   pokemonTypeColor.text
                 )}
               >
