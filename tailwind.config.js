@@ -27,6 +27,22 @@ module.exports = {
     extend: {
       backgroundImage: {
         'avatar-radial': 'radial-gradient(circle at 50% 125%, var(--tw-gradient-stops))',
+      },
+      animation: {
+        'bounce-x': 'bounce-x 0.8s linear infinite',
+      },
+      keyframes: {
+        'bounce-x': {
+          '0%': {
+            transform: 'translateX(0)',
+          },
+          '50%': {
+            transform: 'translateX(-1%)',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+          },
+        }
       }
     },
   },

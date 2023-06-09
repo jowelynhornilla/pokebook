@@ -7,7 +7,7 @@ import { PokemonTypeBgColorMap } from "constants/index";
 import { Badge } from "components/Badge";
 import cn from "classnames";
 
-export const PokemonCard: FC<PokemonCardProps> = ({ name }) => {
+export const PokemonCard: FC<PokemonCardProps> = ({ name, onClick }) => {
   const pokemonApi = usePromise<string, Pokemon>({
     promiseFunction: async (name) => {
       const response = await PokemonService.get({
@@ -16,11 +16,6 @@ export const PokemonCard: FC<PokemonCardProps> = ({ name }) => {
       return response.data;
     },
   });
-
-  useEffect(() => {
-    pokemonApi.call(name);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name]);
 
   const pokemonDetails = useMemo(() => pokemonApi.value, [pokemonApi.value]);
 
@@ -32,12 +27,24 @@ export const PokemonCard: FC<PokemonCardProps> = ({ name }) => {
     [pokemonDetails]
   );
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick(name);
+    }
+  };
+
+  useEffect(() => {
+    pokemonApi.call(name);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name]);
+
   return (
     <div
       className={cn(
         `w-full h-96 max-w-xs rounded-lg overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-lg cursor-pointer transition ease-in-out`,
         pokemonTypeBgColor
       )}
+      onClick={handleClick}
     >
       <div className=" h-full flex flex-col">
         <div className="h-12 flex bg-transparent items-center justify-center grow bg-avatar-radial from-white from-60% to-transparent to-40%">

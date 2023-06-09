@@ -18,3 +18,22 @@ export const PokemonTypeBgColorMap: Record<string, string> = {
   rock: "bg-rock",
   water: "bg-water",
 };
+
+export const PokemonTypeTextColorMap: Record<string, string> = {
+  bug: "text-bug",
+  dragon: "text-dragon",
+  electric: "text-electric",
+  fairy: "text-fairy",
+  fighting: "text-fighting",
+  fire: "text-fire",
+  flying: "text-flying",
+  grass: "text-grass",
+  ground: "text-ground",
+  ghost: "text-ghost",
+  ice: "text-ice",
+  normal: "text-normal",
+  poison: "text-poison",
+  psychic: "text-psychic",
+  rock: "text-rock",
+  water: "text-water",
+};
