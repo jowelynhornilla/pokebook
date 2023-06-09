@@ -23,6 +23,8 @@ module.exports = {
       psychic: "#a29bfe",
       rock: "#2d3436",
       water: "#0190FF",
+      dark: "#292d30",
+      steel: "#c0c0c0"
     },
     extend: {
       backgroundImage: {

@@ -1,6 +1,11 @@
 import { Pokemon } from "types/pokemon";
 import { PaginatedResponse } from "types/response";
 
+export interface ListParams {
+  offset?: number;
+  limit?: number;
+}
+
 export interface GetParams {
   name?: string | null;
 }

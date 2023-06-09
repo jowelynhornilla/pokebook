@@ -1,9 +1,16 @@
 import axios from "axios";
 import { POKEAPI_URL } from "config";
-import { GetParams, GetResponse, ListResponse } from "./types/pokemon.types";
+import {
+  GetParams,
+  GetResponse,
+  ListParams,
+  ListResponse,
+} from "./types/pokemon.types";
 
-const list = () => {
-  return axios.get<ListResponse>(`${POKEAPI_URL}/pokemon`);
+const list = (params?: ListParams | null) => {
+  return axios.get<ListResponse>(`${POKEAPI_URL}/pokemon`, {
+    params,
+  });
 };
 
 const get = (params: GetParams) => {

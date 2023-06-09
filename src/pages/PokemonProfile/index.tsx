@@ -7,12 +7,14 @@ import {
 } from "constants/index";
 import { usePromise } from "hooks/usePromise";
 import { useEffect, useMemo } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import PokemonService from "services/pokemon";
 import { Pokemon } from "types/pokemon";
 
 export const PokemonProfile = () => {
   const { name } = useParams();
+  const [searchParams] = useSearchParams();
+
   const navigate = useNavigate();
   const pokemonApi = usePromise<string, Pokemon>({
     promiseFunction: async (name) => {
@@ -40,7 +42,10 @@ export const PokemonProfile = () => {
   }, [pokemonDetails]);
 
   const handlePreviousPage = () => {
-    navigate("/");
+    navigate({
+      pathname: "/",
+      search: `?${searchParams}`,
+    });
   };
 
   return (
@@ -95,10 +100,14 @@ export const PokemonProfile = () => {
                 })}
                 src={
                   pokemonApi.fulfilled
-                    ? pokemonDetails?.sprites.other.dream_world.front_default
+                    ? `${pokemonDetails?.sprites.other.dream_world.front_default}`
                     : "/pokeball.svg"
                 }
                 alt={pokemonDetails?.name}
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null;
+                  currentTarget.src = "/pokeball.svg";
+                }}
               />
             </div>
           </div>

@@ -54,10 +54,15 @@ export const PokemonCard: FC<PokemonCardProps> = ({ name, onClick }) => {
             })}
             src={
               pokemonApi.fulfilled
-                ? pokemonDetails?.sprites.other.dream_world.front_default
+                ? `${pokemonDetails?.sprites.other.dream_world.front_default}`
                 : "/pokeball.svg"
             }
             alt={pokemonDetails?.name}
+            onError={({ currentTarget }) => {
+              console.log("err");
+              currentTarget.onerror = null;
+              currentTarget.src = "/pokeball.svg";
+            }}
           />
         </div>
         <div className="h-1/3 bg-white p-5 space-y-5">
@@ -65,9 +70,13 @@ export const PokemonCard: FC<PokemonCardProps> = ({ name, onClick }) => {
             {pokemonDetails?.name}
           </div>
           <div className="flex gap-2">
-            {pokemonDetails?.types?.map((type) => (
+            {pokemonDetails?.types?.map((type, index) => (
               <Badge
-                className={cn("capitalize text-white", pokemonTypeBgColor)}
+                key={`${index}-${type.slot}`}
+                className={cn(
+                  "capitalize text-white",
+                  PokemonTypeBgColorMap[type.type.name]
+                )}
               >
                 {type.type.name}
               </Badge>

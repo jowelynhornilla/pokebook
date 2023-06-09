@@ -7,7 +7,7 @@ export const Bar: FC<BarProps> = ({ className = "bg-normal", value }) => {
       <div
         className={`text-white text-center py-2 leading-none rounded-full ${className}`}
         style={{
-            width: `${value}%`
+          width: `${Math.min(100, value)}%`,
         }}
       >
         {value}

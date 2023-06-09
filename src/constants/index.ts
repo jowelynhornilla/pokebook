@@ -17,6 +17,8 @@ export const PokemonTypeBgColorMap: Record<string, string> = {
   psychic: "bg-psychic",
   rock: "bg-rock",
   water: "bg-water",
+  dark: "bg-dark",
+  steel: "bg-steel",
 };
 
 export const PokemonTypeTextColorMap: Record<string, string> = {
@@ -36,4 +38,6 @@ export const PokemonTypeTextColorMap: Record<string, string> = {
   psychic: "text-psychic",
   rock: "text-rock",
   water: "text-water",
+  dark: "text-dark",
+  steel: "text-steel",
 };
