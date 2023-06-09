@@ -9,7 +9,6 @@ export const Pagination: FC<PaginationProps> = (props) => {
   const {
     onPageChange,
     totalCount,
-    siblingCount = 1,
     currentPage,
     pageSize,
     className,
@@ -18,7 +17,6 @@ export const Pagination: FC<PaginationProps> = (props) => {
   const paginationRange = usePagination({
     currentPage,
     totalCount,
-    siblingCount,
     pageSize,
   });
 

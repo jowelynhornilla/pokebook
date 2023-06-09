@@ -81,13 +81,10 @@ export const PokemonCards = () => {
                 id="pageSize"
                 className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-fire focus:border-fire block p-2.5 py-1"
                 onChange={(event) => setPageSize(Number(event.target.value))}
+                defaultValue={pageSize}
               >
                 {PAGE_SIZES.map((size, index) => (
-                  <option
-                    key={`${index}-${size}`}
-                    value={size}
-                    selected={size === DEFAULT_SIZE}
-                  >
+                  <option key={`${index}-${size}`} value={size}>
                     {size}
                   </option>
                 ))}

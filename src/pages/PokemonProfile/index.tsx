@@ -6,7 +6,7 @@ import {
   PokemonTypeTextColorMap,
 } from "constants/index";
 import { usePromise } from "hooks/usePromise";
-import { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import PokemonService from "services/pokemon";
 import { Pokemon } from "types/pokemon";
@@ -113,8 +113,8 @@ export const PokemonProfile = () => {
           </div>
           <div className="bg-white space-y-5 md:w-7/12 md:h-full flex flex-col md:justify-center h-full items-center px-5">
             <div className="space-y-5 w-full md:w-2/3">
-              {pokemonDetails?.stats?.map((stat) => (
-                <>
+              {pokemonDetails?.stats?.map((stat, index) => (
+                <React.Fragment key={`${index}-${stat.stat.name}`}>
                   <div className="capitalize text-xl font-bold">
                     {stat.stat.name}
                   </div>
@@ -122,7 +122,7 @@ export const PokemonProfile = () => {
                     className={cn(pokemonTypeColor.bg)}
                     value={stat.base_stat}
                   />
-                </>
+                </React.Fragment>
               ))}
             </div>
           </div>

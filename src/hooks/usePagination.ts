@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { UsePaginationProps } from "./types/usePagination.types";
 
 const DOTS = "...";
 
@@ -7,13 +8,6 @@ const range = (start: number, end: number) => {
 
   return Array.from({ length }, (_, idx) => idx + start);
 };
-
-interface UsePaginationProps {
-  totalCount?: number;
-  pageSize?: number;
-  siblingCount?: number;
-  currentPage?: number;
-}
 
 export const usePagination = ({
   totalCount = 0,
