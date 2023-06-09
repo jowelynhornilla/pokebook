@@ -20,10 +20,10 @@ export const PokemonCards = () => {
   const [searchParams] = useSearchParams();
 
   const [page, setPage] = useState<number>(
-    Number(searchParams.get("page") || 1)
+    Math.max(Number(searchParams.get("page")), 1)
   );
   const [pageSize, setPageSize] = useState<number>(
-    Number(searchParams.get("pageSize" || DEFAULT_SIZE))
+    Math.max(Number(searchParams.get("pageSize")), DEFAULT_SIZE)
   );
 
   const pokemonApi = usePromise<ListParams, ListResponse>({
@@ -40,6 +40,13 @@ export const PokemonCards = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, pageSize]);
+
+  useEffect(() => {
+    if (pokemonApi.fulfilled && !pokemonApi.value?.results?.length) {
+      setPage(1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pokemonApi.fulfilled]);
 
   return (
     <div className="grid grid-rows-1 h-full pt-5">
