@@ -41,7 +41,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({ name, onClick }) => {
   return (
     <div
       className={cn(
-        `w-full h-96 max-w-xs rounded-lg overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-lg cursor-pointer transition ease-in-out`,
+        `w-full h-96 max-w-xs rounded-lg overflow-hidden shadow-md group hover:-translate-y-2 hover:shadow-lg cursor-pointer transition ease-in-out`,
         pokemonTypeBgColor
       )}
       onClick={handleClick}
@@ -49,7 +49,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({ name, onClick }) => {
       <div className=" h-full flex flex-col">
         <div className="h-12 flex bg-transparent items-center justify-center grow bg-avatar-radial from-white from-60% to-transparent to-40%">
           <img
-            className={cn("h-1/2", {
+            className={cn("h-1/2 group-hover:-translate-y-2 group-hover:scale-125 transition ease-in-out", {
               "animate-spin h-1/4": pokemonApi.pending,
             })}
             src={
