@@ -1,5 +1,4 @@
-export interface BarProps {
+export interface LoaderProps {
     className?: string;
-    value: number;
     dataElementName?: string;
 }

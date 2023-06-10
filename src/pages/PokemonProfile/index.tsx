@@ -11,11 +11,22 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import PokemonService from "services/pokemon";
 import { Pokemon } from "types/pokemon";
 
+export const dataElementNames = {
+  container: "container",
+  name: "name",
+  type: "type",
+  image: "image",
+  stats: "stats",
+  stat: "stat",
+  loader: "loader",
+};
+
 export const PokemonProfile = () => {
   const { name } = useParams();
   const [searchParams] = useSearchParams();
 
   const navigate = useNavigate();
+
   const pokemonApi = usePromise<string, Pokemon>({
     promiseFunction: async (name) => {
       const response = await PokemonService.get({
@@ -49,8 +60,13 @@ export const PokemonProfile = () => {
   };
 
   return (
-    <div className="h-full flex flex-col md:flex-row p-10 ml-auto mr-auto overflow-y-auto">
-      {pokemonApi.pending && <Loader />}
+    <div
+      className="h-full flex flex-col md:flex-row p-10 ml-auto mr-auto overflow-y-auto"
+      data-testid={dataElementNames.container}
+    >
+      {pokemonApi.pending && (
+        <Loader dataElementName={dataElementNames.loader} />
+      )}
       {pokemonApi.fulfilled && (
         <>
           {" "}
@@ -74,6 +90,7 @@ export const PokemonProfile = () => {
                   "capitalize text-4xl md:text-6xl font-bold text-slate-600 truncate",
                   pokemonTypeColor.text
                 )}
+                data-testid={dataElementNames.name}
               >
                 {pokemonDetails?.name}
               </div>
@@ -86,6 +103,7 @@ export const PokemonProfile = () => {
                         "capitalize text-white text-sm",
                         PokemonTypeBgColorMap[type.type.name]
                       )}
+                      dataElementName={dataElementNames.type}
                     >
                       {type.type.name}
                     </Badge>
@@ -100,7 +118,7 @@ export const PokemonProfile = () => {
                 })}
                 src={
                   pokemonApi.fulfilled
-                    ? `${pokemonDetails?.sprites.other.dream_world.front_default}`
+                    ? `${pokemonDetails?.sprites?.other?.dream_world?.front_default}`
                     : "/pokeball.svg"
                 }
                 alt={pokemonDetails?.name}
@@ -108,11 +126,15 @@ export const PokemonProfile = () => {
                   currentTarget.onerror = null;
                   currentTarget.src = "/pokeball.svg";
                 }}
+                data-testid={dataElementNames.image}
               />
             </div>
           </div>
           <div className="bg-white space-y-5 md:w-7/12 md:h-full flex flex-col md:justify-center h-full items-center px-5">
-            <div className="space-y-5 w-full md:w-2/3">
+            <div
+              className="space-y-5 w-full md:w-2/3"
+              data-testid={dataElementNames.stats}
+            >
               {pokemonDetails?.stats?.map((stat, index) => (
                 <React.Fragment key={`${index}-${stat.stat.name}`}>
                   <div className="capitalize text-xl font-bold">
@@ -121,6 +143,7 @@ export const PokemonProfile = () => {
                   <Bar
                     className={cn(pokemonTypeColor.bg)}
                     value={stat.base_stat}
+                    dataElementName={dataElementNames.stat}
                   />
                 </React.Fragment>
               ))}

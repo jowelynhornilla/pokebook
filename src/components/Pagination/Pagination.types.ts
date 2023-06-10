@@ -5,4 +5,5 @@ export interface PaginationProps {
   currentPage?: number;
   pageSize?: number;
   className?: string;
+  dataElementName?: string;
 }

@@ -7,7 +7,7 @@ import { PokemonTypeBgColorMap } from "constants/index";
 import { Badge } from "components/Badge";
 import cn from "classnames";
 
-export const PokemonCard: FC<PokemonCardProps> = ({ name, onClick }) => {
+export const PokemonCard: FC<PokemonCardProps> = ({ name, onClick, dataElementName }) => {
   const pokemonApi = usePromise<string, Pokemon>({
     promiseFunction: async (name) => {
       const response = await PokemonService.get({
@@ -44,6 +44,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({ name, onClick }) => {
         `w-full h-96 max-w-xs rounded-lg overflow-hidden shadow-md group hover:-translate-y-2 hover:shadow-lg cursor-pointer transition ease-in-out`,
         pokemonTypeBgColor
       )}
+      data-testid={dataElementName}
       onClick={handleClick}
     >
       <div className=" h-full flex flex-col">
@@ -54,7 +55,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({ name, onClick }) => {
             })}
             src={
               pokemonApi.fulfilled
-                ? `${pokemonDetails?.sprites.other.dream_world.front_default}`
+                ? `${pokemonDetails?.sprites?.other?.dream_world.front_default}`
                 : "/pokeball.svg"
             }
             alt={pokemonDetails?.name}

@@ -10,6 +10,13 @@ import {
 import PokemonService from "services/pokemon";
 import { ListParams, ListResponse } from "services/pokemon.types";
 
+export const dataElementNames = {
+  loader: "loader",
+  cards: "cards",
+  card: "card",
+  pagination: "pagination",
+};
+
 const DEFAULT_SIZE = 10;
 
 const PAGE_SIZES = [5, 10, 25, 50];
@@ -50,13 +57,19 @@ export const PokemonCards = () => {
 
   return (
     <div className="grid grid-rows-1 h-full pt-5 bg-slate-100">
-      {pokemonApi.pending && <Loader />}
+      {pokemonApi.pending && (
+        <Loader dataElementName={dataElementNames.loader} />
+      )}
       {pokemonApi.fulfilled && (
         <>
-          <div className=" flex flex-wrap justify-center gap-5 grow overflow-y-auto">
+          <div
+            className=" flex flex-wrap justify-center gap-5 grow overflow-y-auto"
+            data-testid={dataElementNames.cards}
+          >
             {pokemonApi?.value?.results.map((pokemon, index) => (
               <PokemonCard
                 key={`${index}-${pokemon.name}`}
+                dataElementName={dataElementNames.card}
                 name={pokemon.name}
                 onClick={(name) => {
                   navigate({
@@ -76,6 +89,7 @@ export const PokemonCards = () => {
               totalCount={pokemonApi.value?.count}
               currentPage={page}
               pageSize={pageSize}
+              dataElementName={dataElementNames.pagination}
             />
             <div className="w-fit ml-auto mr-auto mt-5 text-center md:mt-0 md:absolute right-10 top-4 flex items-center gap-2">
               <label

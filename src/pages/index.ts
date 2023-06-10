@@ -1,2 +1,4 @@
-export * from "./PokemonCards";
-export * from "./PokemonProfile";
+import { PokemonCards } from "./PokemonCards";
+import { PokemonProfile } from "./PokemonProfile";
+
+export { PokemonProfile, PokemonCards };

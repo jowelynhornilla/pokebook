@@ -12,6 +12,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
     currentPage,
     pageSize,
     className,
+    dataElementName,
   } = props;
 
   const paginationRange = usePagination({
@@ -35,7 +36,10 @@ export const Pagination: FC<PaginationProps> = (props) => {
   let lastPage = paginationRange?.[paginationRange?.length - 1];
 
   return (
-    <ul className={cn("flex list-none w-full justify-center", className)}>
+    <ul
+      className={cn("flex list-none w-full justify-center", className)}
+      data-testid={dataElementName}
+    >
       <li
         className={cn("group cursor-pointer", {
           hidden: currentPage === 1,
