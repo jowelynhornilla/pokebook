@@ -5,7 +5,7 @@ import {
   PromiseState,
   PromiseStatus,
   UsePromiseParams,
-} from "./types/usePromise.types";
+} from "./usePromise.types";
 
 const promiseReducer = <P>(
   state: PromiseState<P>,

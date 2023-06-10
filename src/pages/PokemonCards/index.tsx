@@ -8,7 +8,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import PokemonService from "services/pokemon";
-import { ListParams, ListResponse } from "services/types/pokemon.types";
+import { ListParams, ListResponse } from "services/pokemon.types";
 
 const DEFAULT_SIZE = 10;
 
