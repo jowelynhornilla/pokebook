@@ -49,7 +49,7 @@ export const PokemonCards = () => {
   }, [pokemonApi.fulfilled]);
 
   return (
-    <div className="grid grid-rows-1 h-full pt-5">
+    <div className="grid grid-rows-1 h-full pt-5 bg-slate-100">
       {pokemonApi.pending && <Loader />}
       {pokemonApi.fulfilled && (
         <>
@@ -70,7 +70,7 @@ export const PokemonCards = () => {
               />
             ))}
           </div>
-          <div className="py-5 relative">
+          <div className="py-5 relative bg-white">
             <Pagination
               onPageChange={(page) => setPage(page || 1)}
               totalCount={pokemonApi.value?.count}
